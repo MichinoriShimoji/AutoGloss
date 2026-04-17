@@ -62,18 +62,30 @@
   h2 {
     font-size: .78rem;
     font-weight: 700;
-    color: var(--gray-500);
+    color: var(--primary-dark);
     text-transform: uppercase;
     letter-spacing: .08em;
     margin-bottom: 14px;
     padding-bottom: 6px;
-    border-bottom: 1px solid var(--gray-200);
+    border-bottom: 2px solid var(--primary);
+    display: inline-block;
+    min-width: 140px;
   }
 
   /* Link list */
   .links { list-style: none; padding: 0; }
-  .links li { border-bottom: 1px solid var(--gray-200); }
+  .links li {
+    border-bottom: 1px solid var(--gray-200);
+    border-left: 3px solid transparent;
+    padding-left: 12px;
+    transition: border-color .15s, background .15s;
+  }
   .links li:last-child { border-bottom: none; }
+  .links li.l-plan { border-left-color: #3b82f6; }
+  .links li.l-doc { border-left-color: #8b5cf6; }
+  .links li.l-rec { border-left-color: #10b981; }
+  .links li.l-budget { border-left-color: #f59e0b; }
+  .links li:hover { background: var(--gray-50); }
   .links a {
     display: flex;
     align-items: baseline;
@@ -83,9 +95,15 @@
     color: inherit;
     transition: color .1s;
   }
-  .links a:hover { color: var(--primary); }
-  .links a:hover .l-desc { color: var(--primary); opacity: .8; }
-  .links a:hover .arrow { transform: translateX(4px); color: var(--primary); }
+  .links li.l-plan a:hover { color: #3b82f6; }
+  .links li.l-doc a:hover { color: #8b5cf6; }
+  .links li.l-rec a:hover { color: #10b981; }
+  .links li.l-budget a:hover { color: #f59e0b; }
+  .links a:hover .arrow { transform: translateX(4px); }
+  .links li.l-plan a:hover .arrow { color: #3b82f6; }
+  .links li.l-doc a:hover .arrow { color: #8b5cf6; }
+  .links li.l-rec a:hover .arrow { color: #10b981; }
+  .links li.l-budget a:hover .arrow { color: #f59e0b; }
   .l-title {
     font-size: 1rem;
     font-weight: 600;
@@ -93,18 +111,22 @@
     flex-shrink: 0;
     min-width: 140px;
   }
-  .links a:hover .l-title { color: var(--primary); }
   .l-desc {
     font-size: .85rem;
     color: var(--gray-500);
     flex: 1;
   }
   .l-meta {
-    font-size: .72rem;
-    color: var(--gray-400);
-    font-weight: 500;
+    font-size: .7rem;
+    font-weight: 700;
     white-space: nowrap;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: .03em;
   }
+  .l-meta.pdf { background: #ede9fe; color: #6d28d9; }
+  .l-meta.drive { background: #d1fae5; color: #065f46; }
+  .l-meta.lock { background: #fef3c7; color: #92400e; }
   .arrow {
     color: var(--gray-400);
     font-size: .9rem;
@@ -123,13 +145,18 @@
   }
   .members li:last-child { border-bottom: none; }
   .members .role {
-    font-size: .72rem;
+    font-size: .68rem;
     font-weight: 700;
-    color: var(--gray-500);
     letter-spacing: .05em;
     text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+    text-align: center;
+    justify-self: start;
   }
-  .members .role.rep { color: #b45309; }
+  .members .role.rep { background: #fef3c7; color: #92400e; }
+  .members .role.member { background: #dbeafe; color: #1e40af; }
+  .members .role.collab { background: #e0e7ff; color: #4338ca; }
   .members .names {
     font-size: .9rem;
     color: var(--gray-800);
@@ -153,17 +180,19 @@
   .plan-list li::before {
     content: counter(pillar);
     flex-shrink: 0;
-    width: 22px; height: 22px;
+    width: 24px; height: 24px;
     border-radius: 50%;
-    background: var(--gray-100);
-    color: var(--gray-600);
-    font-size: .72rem;
+    color: white;
+    font-size: .75rem;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 2px;
   }
+  .plan-list li:nth-child(1)::before { background: #3b82f6; }
+  .plan-list li:nth-child(2)::before { background: #8b5cf6; }
+  .plan-list li:nth-child(3)::before { background: #f59e0b; }
   .plan-list .p-text { flex: 1; font-size: .9rem; color: var(--gray-700); }
   .plan-list .p-text strong { color: var(--gray-900); font-weight: 600; }
 
@@ -199,34 +228,34 @@
   <section>
     <h2>Links</h2>
     <ul class="links">
-      <li>
+      <li class="l-plan">
         <a href="plan.html">
           <span class="l-title">2026年度 研究計画</span>
           <span class="l-desc">3本柱の同時始動と年度計画</span>
           <span class="arrow">→</span>
         </a>
       </li>
-      <li>
+      <li class="l-doc">
         <a href="kiban_b.pdf" target="_blank" rel="noopener">
           <span class="l-title">科研計画書</span>
           <span class="l-desc">基盤(B) 26K00144 研究計画調書</span>
-          <span class="l-meta">PDF</span>
+          <span class="l-meta pdf">PDF</span>
           <span class="arrow">↗</span>
         </a>
       </li>
-      <li>
+      <li class="l-rec">
         <a href="https://drive.google.com/drive/folders/1rIs-6WCMCXg9iQN5r5OPqOzQ4FZbTEiQ?usp=sharing" target="_blank" rel="noopener">
           <span class="l-title">研究会の記録</span>
           <span class="l-desc">録画・資料・議事録のアーカイブ</span>
-          <span class="l-meta">Google Drive</span>
+          <span class="l-meta drive">Google Drive</span>
           <span class="arrow">↗</span>
         </a>
       </li>
-      <li>
+      <li class="l-budget">
         <a href="budget.html">
           <span class="l-title">研究費予算管理</span>
           <span class="l-desc">予算ダッシュボード</span>
-          <span class="l-meta">要パスワード</span>
+          <span class="l-meta lock">要パスワード</span>
           <span class="arrow">→</span>
         </a>
       </li>
@@ -241,13 +270,13 @@
         <span class="names">下地 理則 <span class="affil">（九州大学）</span></span>
       </li>
       <li>
-        <span class="role">分担者</span>
+        <span class="role member">分担者</span>
         <span class="names">
           ジスク マシュー <span class="affil">（東北大学）</span><span class="sep">／</span>宮川 創 <span class="affil">（筑波大学）</span><span class="sep">／</span>田川 拓海 <span class="affil">（筑波大学）</span><span class="sep">／</span>黒木 邦彦 <span class="affil">（神戸松蔭大学）</span><span class="sep">／</span>宮岡 大 <span class="affil">（鹿児島大学）</span><span class="sep">／</span>髙城 隆一 <span class="affil">（富山大学）</span>
         </span>
       </li>
       <li>
-        <span class="role">研究協力者</span>
+        <span class="role collab">研究協力者</span>
         <span class="names">田口 智大 <span class="affil">（ノートルダム大学 PhD学生）</span></span>
       </li>
     </ul>
