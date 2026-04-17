@@ -48,28 +48,41 @@
     margin-bottom: 40px;
   }
   header .kicker {
-    display: inline-block;
-    background: rgba(37,99,235,.1);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
     color: var(--primary-dark);
-    font-size: .72rem;
+    font-size: .75rem;
     font-weight: 700;
-    letter-spacing: .08em;
-    padding: 4px 14px;
+    letter-spacing: .05em;
+    padding: 7px 14px 7px 12px;
     border-radius: 999px;
     margin-bottom: 14px;
-    text-transform: uppercase;
     text-decoration: none;
-    transition: background .15s, color .15s;
+    border: 1.5px solid var(--primary);
+    box-shadow: 0 2px 6px rgba(37,99,235,.15);
+    transition: background .15s, color .15s, transform .15s, box-shadow .15s;
   }
   header a.kicker:hover {
-    background: var(--primary-dark);
+    background: var(--primary);
     color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37,99,235,.3);
   }
-  header a.kicker::after {
-    content: " ↗";
-    font-size: .68rem;
-    opacity: .7;
+  header a.kicker:hover .kicker-sub { color: rgba(255,255,255,.85); }
+  header .kicker-sub {
+    font-size: .7rem;
+    font-weight: 600;
+    color: var(--gray-500);
+    letter-spacing: 0;
+    text-transform: none;
+    border-left: 1px solid var(--gray-200);
+    padding-left: 8px;
+    transition: color .15s;
   }
+  header a.kicker:hover .kicker-sub { border-left-color: rgba(255,255,255,.3); }
+  header .kicker-arrow { font-size: .75rem; opacity: .8; }
   header h1 {
     font-size: 2rem;
     font-weight: 800;
@@ -216,7 +229,11 @@
 <div class="container">
 
   <header>
-    <a href="https://kaken.nii.ac.jp/ja/grant/KAKENHI-PROJECT-26K00144/" class="kicker" target="_blank" rel="noopener" title="科研費データベースで見る">KAKEN 基盤(B) 26K00144</a>
+    <a href="https://kaken.nii.ac.jp/ja/grant/KAKENHI-PROJECT-26K00144/" class="kicker" target="_blank" rel="noopener" title="科研費データベース（KAKEN）で見る">
+      <span>KAKEN 基盤(B) 26K00144</span>
+      <span class="kicker-sub">科研費DBで見る</span>
+      <span class="kicker-arrow">↗</span>
+    </a>
     <h1>AutoGloss プロジェクト</h1>
     <p>自然言語処理技術を援用した日琉消滅危機言語の談話資料グロス付け自動化に関する研究<br>
     （研究代表者: 下地理則／九州大学）</p>
