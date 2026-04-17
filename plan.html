@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026年度 研究計画 — 3本柱の同時始動</title>
+<style>
+  :root {
+    --p1: #3b82f6;  /* 柱1 = 青 */
+    --p2: #8b5cf6;  /* 柱2 = 紫 */
+    --p3: #f59e0b;  /* 柱3 = 橙 */
+    --p1-bg: #dbeafe;
+    --p2-bg: #ede9fe;
+    --p3-bg: #fef3c7;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-800);
+    line-height: 1.55;
+    font-size: 13.5px;
+  }
+  .container { max-width: 1240px; margin: 0 auto; padding: 18px 16px; }
+
+  header {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    color: white;
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    margin-bottom: 14px;
+    box-shadow: 0 4px 12px rgba(30,58,138,.2);
+  }
+  header .kicker {
+    font-size: .72rem; opacity: .85; letter-spacing: .08em;
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  header h1 { font-size: 1.45rem; font-weight: 700; margin-bottom: 4px; }
+  header .sub { font-size: .88rem; opacity: .92; }
+
+  .intro {
+    background: white;
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    box-shadow: var(--shadow);
+    margin-bottom: 14px;
+    border-left: 4px solid var(--p1);
+    font-size: .88rem;
+    color: var(--gray-700);
+  }
+  .intro strong { color: var(--gray-900); }
+
+  /* Hub & spoke layout */
+  .hub {
+    position: relative;
+    height: 640px;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .hub-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hub-lines line {
+    stroke: #cbd5e1;
+    stroke-width: 2;
+    stroke-dasharray: 6 5;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .hub-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 230px; height: 230px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    color: white;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    z-index: 3;
+    box-shadow: 0 10px 28px rgba(30,58,138,.35);
+    padding: 22px;
+  }
+  .center-badge {
+    background: rgba(255,255,255,.22);
+    padding: 3px 14px;
+    border-radius: 999px;
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255,255,255,.35);
+  }
+  .center-title {
+    font-size: .96rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+  .center-role {
+    font-size: .68rem;
+    opacity: .85;
+    margin-top: 2px;
+  }
+
+  .hub-sat {
+    position: absolute;
+    width: 300px;
+    background: white;
+    border-radius: 10px;
+    padding: 12px 14px 13px;
+    box-shadow: 0 6px 16px rgba(0,0,0,.1);
+    border-top: 4px solid var(--p1);
+    z-index: 2;
+  }
+  .hub-sat.p2 { border-top-color: var(--p2); }
+  .hub-sat.p3 { border-top-color: var(--p3); }
+
+  .hub-sat .sat-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .hub-sat .sat-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--p1);
+    color: white;
+    font-size: .72rem;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .hub-sat.p2 .sat-num { background: var(--p2); }
+  .hub-sat.p3 .sat-num { background: var(--p3); }
+  .hub-sat h3 { font-size: .88rem; font-weight: 700; color: var(--gray-900); line-height: 1.3; }
+  .hub-sat .coauthors {
+    font-size: .72rem;
+    color: var(--p1);
+    font-weight: 700;
+    padding: 5px 0 6px;
+    border-bottom: 1px dashed var(--gray-200);
+    margin-bottom: 6px;
+  }
+  .hub-sat.p2 .coauthors { color: var(--p2); }
+  .hub-sat.p3 .coauthors { color: #b45309; }
+  .hub-sat .coauthors .with { opacity: .55; font-weight: 500; margin-right: 3px; }
+  .hub-sat ul { list-style: none; padding: 0; }
+  .hub-sat li {
+    padding: 3px 0 3px 13px;
+    position: relative;
+    font-size: .76rem;
+    color: var(--gray-700);
+    line-height: 1.45;
+  }
+  .hub-sat li::before {
+    content: "▸";
+    position: absolute;
+    left: 0; top: 2px;
+    color: var(--p1);
+    font-size: .7rem;
+  }
+  .hub-sat.p2 li::before { color: var(--p2); }
+  .hub-sat.p3 li::before { color: var(--p3); }
+  .hub-sat li strong { color: var(--gray-900); }
+
+  /* Satellite positions */
+  .hub-sat.sat-top { top: 16px; left: 50%; transform: translateX(-50%); }
+  .hub-sat.sat-bl { bottom: 16px; left: 16px; }
+  .hub-sat.sat-br { bottom: 16px; right: 16px; }
+
+  /* Autogloss experiment (compact box below hub) */
+  .exp {
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    border-left: 4px solid var(--p1);
+    margin-bottom: 14px;
+  }
+  .exp .exp-title {
+    font-size: .85rem;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 8px;
+  }
+  .exp-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    font-size: .75rem;
+  }
+  @media (max-width: 700px) { .exp-grid { grid-template-columns: repeat(2, 1fr); } }
+  .exp-cell {
+    background: white;
+    padding: 7px 10px;
+    border-radius: 6px;
+  }
+  .exp-cell .lbl { font-size: .62rem; color: var(--gray-500); font-weight: 700; text-transform: uppercase; }
+  .exp-cell .val { font-weight: 700; color: var(--gray-900); font-size: .82rem; margin-top: 1px; }
+
+  @media (max-width: 960px) {
+    .hub { height: auto; padding: 18px 16px; }
+    .hub-lines { display: none; }
+    .hub-center {
+      position: static;
+      transform: none;
+      margin: 0 auto 14px;
+    }
+    .hub-sat {
+      position: static !important;
+      width: 100% !important;
+      transform: none !important;
+      margin-bottom: 10px;
+    }
+  }
+
+  /* Cross-cutting backbone (柱3) connection */
+  .backbone {
+    background: #fffbeb;
+    border: 1px dashed var(--p3);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: .85rem;
+    color: #78350f;
+  }
+  .backbone .bb-icon {
+    background: var(--p3);
+    color: white;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .backbone strong { color: #78350f; font-weight: 700; }
+
+  /* Timeline milestones */
+  .timeline-wrap {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 14px 18px;
+  }
+  .timeline-wrap h2 {
+    font-size: .9rem;
+    color: var(--gray-900);
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 700px) { .timeline { grid-template-columns: repeat(2, 1fr); } }
+  .quarter {
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--gray-50);
+    border-top: 3px solid var(--p1);
+  }
+  .quarter.q2 { border-top-color: var(--p2); }
+  .quarter.q3 { border-top-color: var(--p3); }
+  .quarter.q4 { border-top-color: #10b981; }
+  .quarter .q-label {
+    font-size: .68rem;
+    font-weight: 700;
+    color: var(--gray-500);
+    letter-spacing: .05em;
+  }
+  .quarter h4 { font-size: .82rem; color: var(--gray-900); margin: 3px 0 5px; }
+  .quarter ul { list-style: none; padding: 0; }
+  .quarter li {
+    font-size: .74rem;
+    color: var(--gray-700);
+    padding: 2px 0 2px 12px;
+    position: relative;
+  }
+  .quarter li::before {
+    content: "•";
+    position: absolute;
+    left: 2px;
+    color: var(--gray-500);
+  }
+  .quarter li .pill {
+    display: inline-block;
+    font-size: .6rem;
+    padding: 0 5px;
+    border-radius: 3px;
+    background: var(--p1-bg);
+    color: var(--p1);
+    margin-left: 3px;
+    font-weight: 700;
+  }
+  .quarter li .pill.p2 { background: var(--p2-bg); color: var(--p2); }
+  .quarter li .pill.p3 { background: var(--p3-bg); color: #b45309; }
+
+  code.tag {
+    background: var(--gray-100);
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: .76rem;
+    font-family: 'SF Mono', Menlo, monospace;
+    color: #1e40af;
+  }
+
+  footer {
+    text-align: center;
+    font-size: .72rem;
+    color: var(--gray-500);
+    margin-top: 14px;
+    padding: 8px;
+  }
+
+  @media print {
+    body { background: white; }
+    .container { max-width: 100%; padding: 10px; }
+    header, .pillar, .timeline-wrap, .intro, .backbone { box-shadow: none; border: 1px solid var(--gray-200); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="kicker">KAKEN 基盤(B) 26K00144 ／ 研究代表者: 下地理則</div>
+  <h1>2026年度 研究計画 — 3本柱の同時始動</h1>
+  <div class="sub">柱1: グロス自動化 ／ 柱2: UD ツリーバンク ／ 柱3: ELAN 注釈スタンダード</div>
+</header>
+
+<div class="intro">
+  2026年度は、科研全体計画の <strong>3本柱すべてに同時着手</strong>する年と位置づける。
+  柱1は伊良部を対象に Autoglossing 実験を早速開始し、並行して串木野のフィールド調査を進めて POS タグ付き ELAN データを整備する。
+  柱2は UD Irabu (UDI) 構築の前提となる <strong>UDJ 再アノテーション</strong>を下地・田口智大で協働して推進、秋までに試作版を目指す。
+  柱3は、これら全作業の基盤として <strong>形態素分析・グロス標準化・UPOS／DepRel 設定</strong>の概念整理を担い、柱1・2 を理論面からバックアップする。
+</div>
+
+<!-- Hub & 3 modules (radial layout) -->
+<div class="hub">
+  <svg class="hub-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <line x1="50" y1="50" x2="50" y2="18" />
+    <line x1="50" y1="50" x2="18" y2="82" />
+    <line x1="50" y1="50" x2="82" y2="82" />
+  </svg>
+
+  <div class="hub-center">
+    <div class="center-badge">CORE ／ 下地</div>
+    <div class="center-title">伊良部の<br>グロス自動化</div>
+    <div class="center-role">研究代表者／各モジュールと協働</div>
+  </div>
+
+  <div class="hub-sat p1 sat-top">
+    <div class="sat-head">
+      <div class="sat-num">1</div>
+      <h3>グロス自動化（伊良部から始動）</h3>
+    </div>
+    <div class="coauthors"><span class="with">共著:</span>下地 × 宮川 × 黒木 × 宮岡 × 髙城</div>
+    <ul>
+      <li><strong>伊良部で Autogloss 実験を即時開始</strong>（POS のみを出発点）</li>
+      <li><strong>串木野フィールド</strong>: POS タグ付き ELAN データ整備</li>
+      <li>UDI の <strong>DepRel 付きデータ</strong>を追加教師として投入・比較</li>
+    </ul>
+  </div>
+
+  <div class="hub-sat p2 sat-bl">
+    <div class="sat-head">
+      <div class="sat-num">2</div>
+      <h3>UD ツリーバンク（UDJ 再アノテ→ UDI）</h3>
+    </div>
+    <div class="coauthors"><span class="with">共著:</span>下地 × 田口 × 宮川 × 田川</div>
+    <ul>
+      <li>下地 × <strong>田口</strong>で UDJ の問題点を洗い出し <strong>(Q1–Q2)</strong></li>
+      <li><strong>MUDJ 試作版を秋頃までに完成 (Q3)</strong></li>
+      <li>MUDJ → <strong>UDI 初版</strong>生成、柱1 に実験データ提供</li>
+    </ul>
+  </div>
+
+  <div class="hub-sat p3 sat-br">
+    <div class="sat-head">
+      <div class="sat-num">3</div>
+      <h3>ELAN 注釈スタンダード（全作業の基盤）</h3>
+    </div>
+    <div class="coauthors"><span class="with">共著:</span>下地 × ジスク × 宮岡 × 黒木</div>
+    <ul>
+      <li>形態素分析の方針／<strong>グロス標準化</strong>（Leipzig）</li>
+      <li><strong>UPOS</strong>・<strong>DepRel</strong> 設定の概念整理</li>
+      <li>柱1 の ELAN 注釈、柱2 の UDJ／UDI 設計に直接反映</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Autogloss experiment highlight -->
+<div class="exp">
+  <div class="exp-title">⚡ 柱1 × 柱2 連動実験 — 伊良部の Gloss 精度で DepRel の効果を測る</div>
+  <div class="exp-grid">
+    <div class="exp-cell"><div class="lbl">Baseline</div><div class="val">UPOS のみ</div></div>
+    <div class="exp-cell"><div class="lbl">Treatment</div><div class="val">UPOS + DepRel</div></div>
+    <div class="exp-cell"><div class="lbl">評価対象</div><div class="val">Irabu</div></div>
+    <div class="exp-cell"><div class="lbl">評価指標</div><div class="val">Gloss F1</div></div>
+  </div>
+</div>
+
+<!-- Timeline -->
+<div class="timeline-wrap">
+  <h2>2026年度 マイルストーン</h2>
+  <div class="timeline">
+    <div class="quarter q1">
+      <div class="q-label">Q1 ／ 4–6月</div>
+      <h4>同時始動</h4>
+      <ul>
+        <li>伊良部 Autogloss 実験開始<span class="pill">柱1</span></li>
+        <li>UDJ 問題点の洗い出し（下地×田口）<span class="pill p2">柱2</span></li>
+        <li>注釈スタンダード骨子作成<span class="pill p3">柱3</span></li>
+      </ul>
+    </div>
+    <div class="quarter q2">
+      <div class="q-label">Q2 ／ 7–9月</div>
+      <h4>準備・整備</h4>
+      <ul>
+        <li><strong>夏季研究会（福岡）開催</strong><span class="pill p3">全柱</span></li>
+        <li>串木野フィールド調査（ELAN整備）<span class="pill">柱1</span></li>
+        <li>Matomonizer 拡張（名詞句対応）<span class="pill p2">柱2</span></li>
+        <li>UPOS／DepRel 方針の草案<span class="pill p3">柱3</span></li>
+      </ul>
+    </div>
+    <div class="quarter q3">
+      <div class="q-label">Q3 ／ 10–12月</div>
+      <h4>試作版完成</h4>
+      <ul>
+        <li>UDI 初版生成→ DepRel データ投入<span class="pill">柱1</span></li>
+        <li><strong>MUDJ 試作版（秋目標）</strong><span class="pill p2">柱2</span></li>
+        <li>グロス標準化文書 ドラフト<span class="pill p3">柱3</span></li>
+      </ul>
+    </div>
+    <div class="quarter q4">
+      <div class="q-label">Q4 ／ 1–3月</div>
+      <h4>評価・公開</h4>
+      <ul>
+        <li><strong>冬季研究会（東北）開催</strong><span class="pill p3">全柱</span></li>
+        <li>UPOS vs UPOS+DepRel の比較結果<span class="pill">柱1</span></li>
+        <li>UDJ／UDI の UD 公式申請準備<span class="pill p2">柱2</span></li>
+        <li>スタンダード初版公開<span class="pill p3">柱3</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  基盤(B)「自然言語処理技術を用いた危機的ジャポニック諸語談話資料の自動グロッシング研究」(26K00144) ／ 2026年度計画
+</footer>
+
+</div>
+</body>
+</html>
