@@ -8,309 +8,154 @@
   :root {
     --primary: #2563eb;
     --primary-dark: #1e40af;
-    --accent: #f59e0b;
-    --success: #10b981;
-    --gray-50: #f9fafb;
-    --gray-100: #f3f4f6;
-    --gray-200: #e5e7eb;
-    --gray-500: #6b7280;
-    --gray-600: #4b5563;
-    --gray-700: #374151;
-    --gray-800: #1f2937;
-    --gray-900: #111827;
-    --radius: 14px;
-    --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.05);
-    --shadow-lg: 0 10px 25px rgba(0,0,0,.08), 0 20px 40px rgba(30,58,138,.08);
+    --gray-50: #fafafa;
+    --gray-100: #f4f4f5;
+    --gray-200: #e4e4e7;
+    --gray-400: #a1a1aa;
+    --gray-500: #71717a;
+    --gray-600: #52525b;
+    --gray-700: #3f3f46;
+    --gray-800: #27272a;
+    --gray-900: #18181b;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
-    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #dbeafe 100%);
+    background: white;
     color: var(--gray-800);
-    line-height: 1.6;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    line-height: 1.65;
+    font-size: 15px;
   }
   .container {
-    max-width: 960px;
-    width: 100%;
+    max-width: 680px;
     margin: 0 auto;
-    padding: 40px 20px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding: 80px 24px 60px;
   }
 
-  header {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  header .kicker {
+  header { margin-bottom: 48px; }
+  header .project-id {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    background: white;
-    color: var(--primary-dark);
-    font-size: .75rem;
-    font-weight: 700;
-    letter-spacing: .05em;
-    padding: 7px 14px 7px 12px;
-    border-radius: 999px;
-    margin-bottom: 14px;
-    text-decoration: none;
-    border: 1.5px solid var(--primary);
-    box-shadow: 0 2px 6px rgba(37,99,235,.15);
-    transition: background .15s, color .15s, transform .15s, box-shadow .15s;
-  }
-  header a.kicker:hover {
-    background: var(--primary);
-    color: white;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(37,99,235,.3);
-  }
-  header a.kicker:hover .kicker-sub { color: rgba(255,255,255,.85); }
-  header .kicker-sub {
-    font-size: .7rem;
-    font-weight: 600;
+    gap: 6px;
+    font-size: .78rem;
     color: var(--gray-500);
-    letter-spacing: 0;
-    text-transform: none;
-    border-left: 1px solid var(--gray-200);
-    padding-left: 8px;
-    transition: color .15s;
+    text-decoration: none;
+    margin-bottom: 16px;
+    font-variant-numeric: tabular-nums;
   }
-  header a.kicker:hover .kicker-sub { border-left-color: rgba(255,255,255,.3); }
-  header .kicker-arrow { font-size: .75rem; opacity: .8; }
+  header .project-id:hover { color: var(--primary); }
+  header .project-id::after { content: "↗"; font-size: .78rem; }
   header h1 {
-    font-size: 2rem;
-    font-weight: 800;
+    font-size: 1.6rem;
+    font-weight: 700;
     color: var(--gray-900);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     letter-spacing: -.01em;
+    line-height: 1.4;
   }
   header p {
-    font-size: .95rem;
+    font-size: .92rem;
     color: var(--gray-600);
-    max-width: 640px;
-    margin: 0 auto;
   }
 
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    margin-bottom: 30px;
-  }
-  @media (max-width: 900px) { .cards { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 600px) { .cards { grid-template-columns: 1fr; } }
-
-  .card {
-    background: white;
-    border-radius: var(--radius);
-    padding: 28px 26px;
-    box-shadow: var(--shadow);
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    border: 2px solid transparent;
-    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-  }
-  .card::after {
-    content: "CLICK";
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    font-size: .6rem;
-    font-weight: 800;
-    letter-spacing: .1em;
-    color: var(--primary);
-    background: rgba(37,99,235,.08);
-    padding: 2px 7px;
-    border-radius: 4px;
-    border: 1px solid rgba(37,99,235,.2);
-  }
-  .card.budget::after { color: var(--accent); background: rgba(245,158,11,.1); border-color: rgba(245,158,11,.25); }
-  .card.recording::after { color: var(--success); background: rgba(16,185,129,.1); border-color: rgba(16,185,129,.25); }
-  .card::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 5px;
-    background: var(--primary);
-  }
-  .card.budget::before { background: var(--accent); }
-  .card.recording::before { background: var(--success); }
-  .card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--primary);
-  }
-  .card.budget:hover { border-color: var(--accent); }
-  .card.recording:hover { border-color: var(--success); }
-
-  .card .icon {
-    width: 48px; height: 48px;
-    border-radius: 12px;
-    background: rgba(37,99,235,.1);
-    color: var(--primary);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 14px;
-  }
-  .card.budget .icon {
-    background: rgba(245,158,11,.12);
-    color: var(--accent);
-  }
-  .card.recording .icon {
-    background: rgba(16,185,129,.12);
-    color: var(--success);
-  }
-
-  .card .access {
-    display: inline-block;
-    font-size: .68rem;
-    font-weight: 700;
-    padding: 2px 9px;
-    border-radius: 999px;
-    margin-bottom: 8px;
-    letter-spacing: .03em;
-    text-transform: uppercase;
-  }
-  .card .access.public { background: #d1fae5; color: #065f46; }
-  .card .access.locked { background: #fef3c7; color: #92400e; }
-
-  .card h2 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--gray-900);
-    margin-bottom: 6px;
-  }
-  .card p {
-    font-size: .88rem;
-    color: var(--gray-600);
-    margin-bottom: 18px;
-    flex: 1;
-  }
-  .card .cta {
-    font-size: .85rem;
-    font-weight: 700;
-    color: var(--primary);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .card.budget .cta { color: var(--accent); }
-  .card.recording .cta { color: var(--success); }
-  .card .cta::after {
-    content: "→";
-    transition: transform .2s;
-  }
-  .card:hover .cta::after { transform: translateX(4px); }
-
-  .info {
-    background: white;
-    border-radius: var(--radius);
-    padding: 20px 24px;
-    box-shadow: var(--shadow);
-    font-size: .85rem;
-    color: var(--gray-700);
-  }
-  .info strong { color: var(--gray-900); }
-  .info-title {
+  section { margin-bottom: 40px; }
+  h2 {
     font-size: .78rem;
     font-weight: 700;
-    color: var(--primary-dark);
-    letter-spacing: .05em;
-    margin-bottom: 8px;
+    color: var(--gray-500);
     text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--gray-200);
   }
 
-  /* 3-year plan section — informational (non-clickable) */
-  .plan3y {
-    background: repeating-linear-gradient(135deg, #f8fafc 0 10px, #f1f5f9 10px 20px);
-    border-radius: var(--radius);
-    padding: 22px 26px;
-    margin-bottom: 20px;
-    border-left: 5px solid var(--gray-300);
-    position: relative;
-  }
-  .plan3y::before {
-    content: "INFO ／ 参照情報";
-    position: absolute;
-    top: -10px;
-    left: 20px;
-    background: var(--gray-600);
-    color: white;
-    font-size: .62rem;
-    font-weight: 700;
-    letter-spacing: .08em;
-    padding: 3px 10px;
-    border-radius: 4px;
-  }
-  .plan3y h3 {
-    font-size: .95rem;
-    font-weight: 700;
-    color: var(--gray-900);
-    margin: 4px 0 14px;
+  /* Link list */
+  .links { list-style: none; padding: 0; }
+  .links li { border-bottom: 1px solid var(--gray-200); }
+  .links li:last-child { border-bottom: none; }
+  .links a {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 0;
+    text-decoration: none;
+    color: inherit;
+    transition: color .1s;
   }
-  .plan3y h3 .badge {
-    font-size: .65rem;
-    font-weight: 700;
-    background: rgba(37,99,235,.1);
-    color: var(--primary-dark);
-    padding: 2px 8px;
-    border-radius: 999px;
-    letter-spacing: .05em;
+  .links a:hover { color: var(--primary); }
+  .links a:hover .l-desc { color: var(--primary); opacity: .8; }
+  .links a:hover .arrow { transform: translateX(4px); color: var(--primary); }
+  .l-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    flex-shrink: 0;
+    min-width: 140px;
   }
-  .plan3y ol {
+  .links a:hover .l-title { color: var(--primary); }
+  .l-desc {
+    font-size: .85rem;
+    color: var(--gray-500);
+    flex: 1;
+  }
+  .l-meta {
+    font-size: .72rem;
+    color: var(--gray-400);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .arrow {
+    color: var(--gray-400);
+    font-size: .9rem;
+    transition: transform .15s, color .15s;
+  }
+
+  /* 3-year plan */
+  .plan-list {
     list-style: none;
     padding: 0;
     counter-reset: pillar;
   }
-  .plan3y li {
+  .plan-list li {
     counter-increment: pillar;
+    padding: 10px 0;
     display: flex;
     gap: 14px;
-    padding: 10px 0;
-    border-bottom: 1px dashed var(--gray-200);
     align-items: flex-start;
   }
-  .plan3y li:last-child { border-bottom: none; }
-  .plan3y li::before {
+  .plan-list li::before {
     content: counter(pillar);
     flex-shrink: 0;
-    width: 28px; height: 28px;
+    width: 22px; height: 22px;
     border-radius: 50%;
-    background: var(--primary);
-    color: white;
-    font-size: .78rem;
+    background: var(--gray-100);
+    color: var(--gray-600);
+    font-size: .72rem;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 2px;
   }
-  .plan3y li:nth-child(2)::before { background: #8b5cf6; }
-  .plan3y li:nth-child(3)::before { background: var(--accent); }
-  .plan3y li .p-body { flex: 1; font-size: .88rem; color: var(--gray-700); }
-  .plan3y li .p-body strong { color: var(--gray-900); font-size: .92rem; display: block; margin-bottom: 2px; }
+  .plan-list .p-text { flex: 1; font-size: .9rem; color: var(--gray-700); }
+  .plan-list .p-text strong { color: var(--gray-900); font-weight: 600; }
 
   footer {
-    text-align: center;
-    padding: 20px;
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--gray-200);
     font-size: .78rem;
     color: var(--gray-500);
   }
-  footer a { color: var(--primary); text-decoration: none; }
+  footer a { color: var(--gray-600); text-decoration: none; }
+  footer a:hover { color: var(--primary); }
+
+  @media (max-width: 600px) {
+    .container { padding: 48px 20px 40px; }
+    .links a { flex-wrap: wrap; }
+    .l-title { min-width: 0; }
+  }
 </style>
 </head>
 <body>
@@ -318,75 +163,63 @@
 <div class="container">
 
   <header>
-    <a href="https://kaken.nii.ac.jp/ja/grant/KAKENHI-PROJECT-26K00144/" class="kicker" target="_blank" rel="noopener" title="科研費データベース（KAKEN）で見る">
-      <span>KAKEN 基盤(B) 26K00144</span>
-      <span class="kicker-sub">科研費DBで見る</span>
-      <span class="kicker-arrow">↗</span>
+    <a href="https://kaken.nii.ac.jp/ja/grant/KAKENHI-PROJECT-26K00144/" class="project-id" target="_blank" rel="noopener">
+      科研費基盤(B) 26K00144
     </a>
-    <h1>AutoGloss プロジェクト</h1>
-    <p>自然言語処理技術を援用した日琉消滅危機言語の談話資料グロス付け自動化に関する研究<br>
-    （研究代表者: 下地理則／九州大学）</p>
+    <h1>自然言語処理技術を援用した<br>日琉消滅危機言語の談話資料<br>グロス付け自動化に関する研究</h1>
+    <p>研究代表者: 下地理則（九州大学）</p>
   </header>
 
-  <div class="cards">
-
-    <a href="plan.html" class="card plan">
-      <div class="icon">📋</div>
-      <span class="access public">Public</span>
-      <h2>2026年度 研究計画</h2>
-      <p>3本柱（グロス自動化／UDツリーバンク／ELAN注釈スタンダード）の同時始動。伊良部UDIとAutoglossing精度評価を中心に据えた年間計画。</p>
-      <span class="cta">計画を見る</span>
-    </a>
-
-    <a href="https://drive.google.com/drive/folders/1rIs-6WCMCXg9iQN5r5OPqOzQ4FZbTEiQ?usp=sharing" class="card recording" target="_blank" rel="noopener">
-      <div class="icon">📁</div>
-      <span class="access public">Public</span>
-      <h2>研究会の記録</h2>
-      <p>これまでの研究会の録画・資料・議事録等のアーカイブ。<br><span style="font-size:.78rem;color:var(--gray-500);">※ Google Drive</span></p>
-      <span class="cta">記録を見る</span>
-    </a>
-
-    <a href="budget.html" class="card budget">
-      <div class="icon">💰</div>
-      <span class="access locked">Members Only</span>
-      <h2>研究費予算管理</h2>
-      <p>3年間の予算配分ダッシュボード。研究者別トラッカー、支出履歴、CSVエクスポート機能。アクセスにはパスワードが必要です。</p>
-      <span class="cta">ダッシュボードへ</span>
-    </a>
-
-  </div>
-
-  <div class="plan3y">
-    <h3>3年間の全体計画 <span class="badge">2026–2028</span></h3>
-    <ol>
+  <section>
+    <h2>Links</h2>
+    <ul class="links">
       <li>
-        <div class="p-body">
-          <strong>柱1: グロス自動化システム構築</strong>
-          伊良部・串木野・青森の ELAN 書き起こしデータを用いた自動グロス付与システムの構築（BiLSTM+CRF／Transformer）。
-        </div>
+        <a href="plan.html">
+          <span class="l-title">2026年度 研究計画</span>
+          <span class="l-desc">3本柱の同時始動と年度計画</span>
+          <span class="arrow">→</span>
+        </a>
       </li>
       <li>
-        <div class="p-body">
-          <strong>柱2: UD ツリーバンクへのデポジット</strong>
-          ELAN 書き起こしデータを活用した Universal Dependencies ツリーバンクの構築・公開（UD_Miyako・UD_Kushikino 等）。前段として UDJ の再アノテ（MUDJ）を推進。
-        </div>
+        <a href="https://drive.google.com/drive/folders/1rIs-6WCMCXg9iQN5r5OPqOzQ4FZbTEiQ?usp=sharing" target="_blank" rel="noopener">
+          <span class="l-title">研究会の記録</span>
+          <span class="l-desc">録画・資料・議事録のアーカイブ</span>
+          <span class="l-meta">Google Drive</span>
+          <span class="arrow">↗</span>
+        </a>
       </li>
       <li>
-        <div class="p-body">
-          <strong>柱3: 日琉諸語 ELAN 注釈スタンダード構築</strong>
-          形態素分析・グロス標準化・UPOS／DepRel 設定など、日琉諸語全体に通底する ELAN 注釈規範の整備。
-        </div>
+        <a href="budget.html">
+          <span class="l-title">研究費予算管理</span>
+          <span class="l-desc">予算ダッシュボード</span>
+          <span class="l-meta">要パスワード</span>
+          <span class="arrow">→</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>3年間の全体計画（2026–2028）</h2>
+    <ol class="plan-list">
+      <li>
+        <div class="p-text"><strong>グロス自動化システム構築。</strong>伊良部・串木野・青森の ELAN データを用いた自動グロス付与システム（BiLSTM+CRF／Transformer）。</div>
+      </li>
+      <li>
+        <div class="p-text"><strong>UD ツリーバンクへのデポジット。</strong>ELAN データを活用した Universal Dependencies ツリーバンクの構築・公開（UD_Miyako・UD_Kushikino 等）。前段として UDJ 再アノテ（MUDJ）を推進。</div>
+      </li>
+      <li>
+        <div class="p-text"><strong>日琉諸語 ELAN 注釈スタンダード構築。</strong>形態素分析・グロス標準化・UPOS／DepRel 設定など、日琉諸語全体に通底する注釈規範の整備。</div>
       </li>
     </ol>
-  </div>
+  </section>
 
+  <footer>
+    © 2026 下地研究室／九州大学 ・
+    <a href="https://github.com/MichinoriShimoji/autogloss" target="_blank" rel="noopener">GitHub</a>
+  </footer>
 
 </div>
-
-<footer>
-  © 2026 下地研究室／九州大学 ・
-  <a href="https://github.com/MichinoriShimoji/AutoGloss" target="_blank" rel="noopener">GitHub</a>
-</footer>
 
 </body>
 </html>
