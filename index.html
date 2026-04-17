@@ -111,6 +111,32 @@
     transition: transform .15s, color .15s;
   }
 
+  /* Members */
+  .members { list-style: none; padding: 0; }
+  .members li {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--gray-200);
+    align-items: baseline;
+  }
+  .members li:last-child { border-bottom: none; }
+  .members .role {
+    font-size: .72rem;
+    font-weight: 700;
+    color: var(--gray-500);
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+  .members .role.rep { color: #b45309; }
+  .members .names {
+    font-size: .9rem;
+    color: var(--gray-800);
+  }
+  .members .names .affil { color: var(--gray-500); font-size: .82rem; }
+  .members .names .sep { color: var(--gray-300); margin: 0 6px; }
+
   /* 3-year plan */
   .plan-list {
     list-style: none;
@@ -203,6 +229,24 @@
           <span class="l-meta">要パスワード</span>
           <span class="arrow">→</span>
         </a>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>メンバー</h2>
+    <ul class="members">
+      <li>
+        <span class="role rep">代表者</span>
+        <span class="names">下地 理則 <span class="affil">（九州大学）</span></span>
+      </li>
+      <li>
+        <span class="role">分担者</span>
+        <span class="names">ジスク マシュー<span class="sep">／</span>宮川 創<span class="sep">／</span>田川 拓海<span class="sep">／</span>黒木 邦彦<span class="sep">／</span>宮岡 大<span class="sep">／</span>髙城 隆一</span>
+      </li>
+      <li>
+        <span class="role">研究協力者</span>
+        <span class="names">田口 智大 <span class="affil">（ノートルダム大学 PhD学生）</span></span>
       </li>
     </ul>
   </section>
