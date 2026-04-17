@@ -6,4 +6,6 @@ budget_plain.html
 research_expenses_*.csv
 *.csv
 .DS_Store
+*.mp4
+*.mov
 
