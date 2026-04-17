@@ -215,6 +215,64 @@
     text-transform: uppercase;
   }
 
+  /* 3-year plan section */
+  .plan3y {
+    background: white;
+    border-radius: var(--radius);
+    padding: 22px 26px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+  }
+  .plan3y h3 {
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .plan3y h3 .badge {
+    font-size: .65rem;
+    font-weight: 700;
+    background: rgba(37,99,235,.1);
+    color: var(--primary-dark);
+    padding: 2px 8px;
+    border-radius: 999px;
+    letter-spacing: .05em;
+  }
+  .plan3y ol {
+    list-style: none;
+    padding: 0;
+    counter-reset: pillar;
+  }
+  .plan3y li {
+    counter-increment: pillar;
+    display: flex;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--gray-200);
+    align-items: flex-start;
+  }
+  .plan3y li:last-child { border-bottom: none; }
+  .plan3y li::before {
+    content: counter(pillar);
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    font-size: .78rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .plan3y li:nth-child(2)::before { background: #8b5cf6; }
+  .plan3y li:nth-child(3)::before { background: var(--accent); }
+  .plan3y li .p-body { flex: 1; font-size: .88rem; color: var(--gray-700); }
+  .plan3y li .p-body strong { color: var(--gray-900); font-size: .92rem; display: block; margin-bottom: 2px; }
+
   footer {
     text-align: center;
     padding: 20px;
@@ -265,6 +323,30 @@
       <span class="cta">ダッシュボードへ</span>
     </a>
 
+  </div>
+
+  <div class="plan3y">
+    <h3>3年間の全体計画 <span class="badge">2026–2028</span></h3>
+    <ol>
+      <li>
+        <div class="p-body">
+          <strong>柱1: グロス自動化システム構築</strong>
+          伊良部・串木野・青森の ELAN 書き起こしデータを用いた自動グロス付与システムの構築（BiLSTM+CRF／Transformer）。
+        </div>
+      </li>
+      <li>
+        <div class="p-body">
+          <strong>柱2: UD ツリーバンクへのデポジット</strong>
+          ELAN 書き起こしデータを活用した Universal Dependencies ツリーバンクの構築・公開（UD_Miyako・UD_Kushikino 等）。前段として UDJ の再アノテ（MUDJ）を推進。
+        </div>
+      </li>
+      <li>
+        <div class="p-body">
+          <strong>柱3: 日琉諸語 ELAN 注釈スタンダード構築</strong>
+          形態素分析・グロス標準化・UPOS／DepRel 設定など、日琉諸語全体に通底する ELAN 注釈規範の整備。
+        </div>
+      </li>
+    </ol>
   </div>
 
 
