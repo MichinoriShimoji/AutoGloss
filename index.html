@@ -58,6 +58,17 @@
     border-radius: 999px;
     margin-bottom: 14px;
     text-transform: uppercase;
+    text-decoration: none;
+    transition: background .15s, color .15s;
+  }
+  header a.kicker:hover {
+    background: var(--primary-dark);
+    color: white;
+  }
+  header a.kicker::after {
+    content: " ↗";
+    font-size: .68rem;
+    opacity: .7;
   }
   header h1 {
     font-size: 2rem;
@@ -205,7 +216,7 @@
 <div class="container">
 
   <header>
-    <span class="kicker">KAKEN 基盤(B) 26K00144</span>
+    <a href="https://kaken.nii.ac.jp/ja/grant/KAKENHI-PROJECT-26K00144/" class="kicker" target="_blank" rel="noopener" title="科研費データベースで見る">KAKEN 基盤(B) 26K00144</a>
     <h1>AutoGloss プロジェクト</h1>
     <p>自然言語処理技術を援用した日琉消滅危機言語の談話資料グロス付け自動化に関する研究<br>
     （研究代表者: 下地理則／九州大学）</p>
